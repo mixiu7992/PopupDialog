@@ -599,9 +599,16 @@
         if (self.needsDrawViewHierarchy)
         {
             __strong UIView *underlyingView = self.underlyingView;
-            BOOL isSuccessSnapkit = [underlyingView drawViewHierarchyInRect:underlyingView.bounds afterScreenUpdates:YES];
-            if (!isSuccessSnapkit) {
-                [underlyingView.layer renderInContext:context];
+            if ((NSClassFromString(@"codeinmgame.MapView") != nil) && ([[UIDevice currentDevice] systemVersion].floatValue >= 11.0)) {
+                for (UIView *view in underlyingView.subviews) {
+                    if ([view isMemberOfClass:NSClassFromString(@"codeinmgame.MapView")]) {
+                        UIImage *image = [view performSelector:NSSelectorFromString(@"takeSnapshotInRect:") withObject:[NSValue valueWithCGRect:underlyingView.bounds]];
+                        [image drawInRect:underlyingView.bounds];
+                    }
+                }
+                //                [underlyingLayer renderInContext:context];
+            } else {
+                [underlyingView drawViewHierarchyInRect:underlyingView.bounds afterScreenUpdates:YES];
             }
         }
         else
