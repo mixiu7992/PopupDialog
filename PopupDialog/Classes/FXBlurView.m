@@ -599,7 +599,10 @@
         if (self.needsDrawViewHierarchy)
         {
             __strong UIView *underlyingView = self.underlyingView;
-            [underlyingView drawViewHierarchyInRect:underlyingView.bounds afterScreenUpdates:YES];
+            BOOL isSuccessSnapkit = [underlyingView drawViewHierarchyInRect:underlyingView.bounds afterScreenUpdates:YES];
+            if (!isSuccessSnapkit) {
+                [underlyingView.layer renderInContext:context];
+            }
         }
         else
         {
