@@ -82,9 +82,9 @@ class AppearanceTests: XCTestCase {
         pv.messageTextAlignment = .right
 
         let pcv = PopupDialogContainerView.appearance()
-        pcv.cornerRadius        = 10
+        pcv.pd_cornerRadius        = 10
         pcv.shadowEnabled       = false
-        pcv.shadowColor         = UIColor.green
+        pcv.pd_shadowColor         = UIColor.green
 
         // Customize overlay appearance
         let ov = PopupDialogOverlayView.appearance()
@@ -142,9 +142,9 @@ class AppearanceTests: XCTestCase {
         
         let pcv = PopupDialogContainerView.appearance()
         pcv.backgroundColor     = UIColor.white
-        pcv.cornerRadius        = 4
+        pcv.pd_cornerRadius        = 4
         pcv.shadowEnabled       = true
-        pcv.shadowColor         = UIColor.black
+        pcv.pd_shadowColor         = UIColor.black
         
         // Customize overlay appearance
         let ov = PopupDialogOverlayView.appearance()
